@@ -2,35 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Critical for mobile screen scaling -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- MUST include user-scalable=yes to allow pinch-to-zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <style>
-        /* Remove default browser margins and scrollbars */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; 
+            /* Removed overflow: hidden so users can scroll around when zoomed in */
+        }
+
+        .resizable-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .fullscreen-img {
-            width: 100vw;   /* 100% of the viewport width */
-            height: 100vh;  /* 100% of the viewport height */
+            width: 100vw;   
+            height: 100vh;  
+            object-fit: fill; /* Stretches the image to full viewport */
             
-            /* CHOOSE ONE OF THE OPTIONS BELOW FOR THE IMAGE RATIO: */
-            
-            /* Option A: Force stretches the image to fit (unproportional/distorted) */
-            /* object-fit: fill; 
-            
-            /* Option B (Recommended): Fills screen, crops edges to keep proportion */
-            object-fit: cover
+            /* Tells the mobile browser to allow standard touch gestures like pinching */
+            touch-action: pinch-zoom; 
         }
     </style>
 </head>
 <body>
 
-    <img src="TCVC.png" alt="Fullscreen Mobile Image" class="fullscreen-img">
+    <div class="resizable-container">
+        <img src="TCVC.png" alt="Resizable Mobile Image" class="fullscreen-img">
+    </div>
 
 </body>
 </html>
